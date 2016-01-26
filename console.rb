@@ -16,10 +16,10 @@ class Console
     start_position = gets.chomp!
 
     puts 'Vvedite vash marshrut iz bukv (primer : DRLU)'
-    puts 'D - eto vniz'
-    puts 'U - eto vverh'
-    puts 'R - eto vpravo'
-    puts 'L - eto vlevo'
+    puts 'S - eto vniz'
+    puts 'N - eto vverh'
+    puts 'E - eto vpravo'
+    puts 'W - eto vlevo'
     route = gets.chomp!
 
     @game = Game.new(map_x, map_y, start_position, route)

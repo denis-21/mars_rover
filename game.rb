@@ -1,6 +1,6 @@
 class Game
-  MOVES = ['D', 'U', 'R', 'L']
-  COORDINATES= { D:[0,-1], U:[0,1], R:[1,0], L:[-1,0] }
+  MOVES = ['S', 'N', 'E', 'W']
+  COORDINATES= { S:[0,-1], N:[0,1], E:[1,0], W:[-1,0] }
 
   def initialize(map_x, map_y, start_position, route)
     @map_x, @map_y, @route = map_x, map_y, route.split("")
@@ -9,6 +9,7 @@ class Game
     @start_position = start_position.split(',')
     @position_x = @start_position[0].to_i
     @position_y = @start_position[1].to_i
+    @buf_step =''
   end
 
   def start
@@ -21,6 +22,7 @@ class Game
   def go_to(step)
     nex_step_x(COORDINATES[step.to_sym][0])
     nex_step_y(COORDINATES[step.to_sym][1])
+    result_steps(step)
   end
 
   def nex_step_x(new_x)
@@ -58,5 +60,14 @@ class Game
 
   def include_map_y?(y)
     (y >=0) && (y <= @bild_map.y)
+  end
+
+  def result_steps(step)
+    if @buf_step != step
+      @buf_step = step
+      puts "Vi povernylis v storony #{step} i sdelali 1 shag (koordinati po X: #{@position_x}, po Y: #{@position_y})"
+    else
+      puts "Vi sdelali +1 shag v tuje storony (koordinati po X: #{@position_x}, po Y: #{@position_y})"
+    end
   end
 end
